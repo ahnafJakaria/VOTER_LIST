@@ -1848,22 +1848,18 @@
 // For each row, set area = "ইউসুফগঞ্জ" and gender = "পুরুষ", skip migrated
 const voterData = allData
     .filter(row => {
-        // "মাইগ্রেট" থাকা রো বাদ দিন
         if (row.address && row.address.includes('মাইগ্রেট')) return false;
         if (row.status && row.status.includes('মাইগ্রেট')) return false;
         if (!row.name && !row.voterNo) return false;
         return true;
     })
     .map(row => {
-        let addr = row.address || '';
-        if (!addr || addr.trim() === '') {
-            addr = 'ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ';
-        }
+        // সবাইকে ইউসুফগঞ্জ বানান (পুরানো ঠিকানা ওভাররাইট করুন)
         return {
             ...row,
-            address: addr,
-            area: 'ইউসুফগঞ্জ',
-            gender: 'পুরুষ'
+            address: 'ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ',  // ← সবাই ইউসুফগঞ্জ
+            area: 'ইউসুফগঞ্জ',     // ← এলাকা ফিক্সড
+            gender: 'পুরুষ'        // ← লিঙ্গ ফিক্সড
         };
     });
 
