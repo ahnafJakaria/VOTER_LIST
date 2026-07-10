@@ -466,6 +466,51 @@
             table { font-size: 0.6rem; min-width: 400px; }
             th, td { padding: 4px 3px; }
             .serial-col { font-size: 0.65rem; }
+
+
+
+          /* Mobile optimizations - বড় টেক্সট সাইজ */
+@media (max-width: 600px) {
+    body { padding: 6px 4px; }
+    .app-container { padding: 10px 6px 20px; border-radius: 14px; }
+    .header h1 { font-size: 1.2rem; }
+    .header h1 small { font-size: 0.7rem; }
+    .action-buttons button { padding: 6px 12px; font-size: 0.8rem; }
+    .search-panel { padding: 8px 10px; border-radius: 20px; gap: 6px; }
+    .search-panel input, .search-panel select { 
+        padding: 8px 12px; 
+        font-size: 0.9rem; 
+        min-width: 60px; 
+        flex: 1 1 80px; 
+    }
+    .search-panel .btn-group button { padding: 8px 14px; font-size: 0.85rem; }
+    .stats-bar { padding: 4px 10px; border-radius: 30px; }
+    .stats-bar .left { font-size: 0.8rem; gap: 6px; }
+    .stats-bar .left span { padding: 1px 10px; font-size: 0.75rem; }
+    .pagination-controls { font-size: 0.8rem; gap: 4px; }
+    .pagination-controls button { padding: 4px 10px; font-size: 0.8rem; }
+    .pagination-controls select { padding: 4px 8px; font-size: 0.8rem; }
+    
+    /* টেবিলের টেক্সট সাইজ বাড়ানো */
+    table { font-size: 0.85rem; min-width: 500px; }
+    th { font-size: 0.75rem; padding: 8px 6px; }
+    td { padding: 8px 6px; font-size: 0.85rem; }
+    .serial-col { font-size: 0.9rem; }
+    
+    .modal-content { padding: 18px 14px; max-width: 100%; margin: 8px; }
+    .slip-title { font-size: 1.1rem; }
+    .slip-row { font-size: 0.9rem; padding: 4px 0; }
+    .slip-actions button { font-size: 0.85rem; padding: 10px; }
+}
+
+@media (max-width: 400px) {
+    .search-panel input, .search-panel select { min-width: 50px; font-size: 0.85rem; }
+    table { font-size: 0.8rem; min-width: 400px; }
+    th, td { padding: 6px 4px; }
+    .serial-col { font-size: 0.85rem; }
+}
+
+
         }
     </style>
 </head>
@@ -1173,8 +1218,9 @@
   { serial: "০৫৯৯", name: "দিলীপ চন্দ্র দাস", voterNo: "৬৭১৪৭৯০০১০৪১", father: "যোগেন্দ্র চন্দ্র দাস", mother: "যোগেন্দ্র চন্দ্র দাস", profession: "ব্যবসা", birth: "০১/০১/১৯৫৮", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
   { serial: "০৬০০", name: "পানু চন্দ্র দাস", voterNo: "৬৭১৪৭৯০০১০৪৪", father: "পানু চন্দ্র দাস", mother: "পানু চন্দ্র দাস", profession: "ব্যবসা", birth: "০১/০১/১৯৫৭", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
   { serial: "০৬০১", name: "মোঃ রেজাউল করিম ভূঞা", voterNo: "৬৭১৪৭৯০০১০৪৫", father: "আঃ হক ভূঞা", mother: "র", profession: "ব্যবসা", birth: "০৭/০৫/১৯৬১", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
-  { serial: "০৬০২", name: "আবদুল খালেক সরকার", voterNo: "৬৭১৪৭৯০০১০৪৭", father: "আবদুল খালেক সরকার", mother: "আবদুল খালেক সরকার", profession: "ব্যবসা", birth: "১০/০৭/১৯৫৩", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
-  { serial: "০৬০৪", name: "ফয়সাল মিয়া", voterNo: "৬৭১৪৭৯০০১০৫৪", father: "ফয়সাল মিয়া", mother: "ফয়সাল মিয়া", profession: "ব্যবসা", birth: "১২/১২/১৯৯৩", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
+  { serial: "০৬০২", name: "আবদুল খালেক সরকার", voterNo: "৬৭১৪৭৯০০১০৪৭", father: "আবদুল লতিফ সরকার", mother: "রহেতুন নেছা", profession: "ব্যবসা", birth: "১০/০৭/১৯৫৩", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
+  { serial: "০৬০৪", name: "ফয়সাল মিয়া", voterNo: "৬৭১৪৭৯০০১০৫৪", father: "আলামিন মিয়া", mother: "সাহিদা আকতার", profession: "ব্যবসা", birth: "১২/১২/১৯৯৩", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
+  { serial: "০৬০৫", name: "শাহ আলম", voterNo: "৬৭১৪৭৯০০১০৫৫", father: "আমির হোসেন", mother: "ফিরুজা বেগম", profession: "ব্যবসা", birth: "১০/১১/১৯৮৮", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
   { serial: "০৬০৬", name: "মোঃ শামীম হোসেন ভূইয়া", voterNo: "৬৭১৪৭৯০০১০৫৬", father: "মজিবুর রহমান ভূইয়া", mother: "উম্মে কুলসুম", profession: "ব্যবসা", birth: "০১/১১/১৯৭০", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
   { serial: "০৬০৭", name: "সোহেল ভূইয়া", voterNo: "৬৭১৪৭৯০০১০৫৭", father: "মজিবুর রহমান ভূইয়া", mother: "উম্মে কুলসুম", profession: "ব্যবসা", birth: "০৫/০৩/১৯৭৬", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
   { serial: "০৬০৮", name: "ইসমাইল হোসেন", voterNo: "৬৭১৪৭৯০০১০৬৩", father: "আলী মোহাম্মদ", mother: "মোমেলা খাতুন", profession: "বেসরকারী চাকুরী", birth: "০৯/১০/১৯৮৬", address: "ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ" },
@@ -1798,19 +1844,28 @@
         const allData = rawData.concat(newEntries);
 
         // For each row, set area = "ইউসুফগঞ্জ" and gender = "পুরুষ"
-        const voterData = allData.map(row => {
-            let addr = row.address || '';
-            // keep existing address if it has some content, else set default
-            if (!addr || addr.trim() === '') {
-                addr = 'ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ';
-            }
-            return {
-                ...row,
-                address: addr,
-                area: 'ইউসুফগঞ্জ',
-                gender: 'পুরুষ'
-            };
-        });
+       // For each row, FORCE area = "ইউসুফগঞ্জ" and gender = "পুরুষ"
+// For each row, set area = "ইউসুফগঞ্জ" and gender = "পুরুষ", skip migrated
+const voterData = allData
+    .filter(row => {
+        // "মাইগ্রেট" থাকা রো বাদ দিন
+        if (row.address && row.address.includes('মাইগ্রেট')) return false;
+        if (row.status && row.status.includes('মাইগ্রেট')) return false;
+        if (!row.name && !row.voterNo) return false;
+        return true;
+    })
+    .map(row => {
+        let addr = row.address || '';
+        if (!addr || addr.trim() === '') {
+            addr = 'ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ';
+        }
+        return {
+            ...row,
+            address: addr,
+            area: 'ইউসুফগঞ্জ',
+            gender: 'পুরুষ'
+        };
+    });
 
         // ---------- DOM ----------
         const tbody = document.getElementById('tableBody');
@@ -1863,19 +1918,22 @@
             return normalize(row.gender) === normalize(gender);
         }
 
-        function filterData() {
-            const query = searchInput.value;
-            const area = areaFilter.value;
-            const gender = genderFilter.value;
+     function filterData() {
+    const query = searchInput.value;
+    const area = areaFilter.value;
+    const gender = genderFilter.value;
 
-            filteredData = voterData.filter(row => {
-                if (!row.name && !row.voterNo && !row.father && !row.mother && !row.profession && !row.birth && !row.address) return false;
-                return matchesSearch(row, query) && matchesArea(row, area) && matchesGender(row, gender);
-            });
+    filteredData = voterData.filter(row => {
+        // ডাবল চেক: "মাইগ্রেট" থাকা রো বাদ দিন
+        if (row.address && row.address.includes('মাইগ্রেট')) return false;
+        if (row.status && row.status.includes('মাইগ্রেট')) return false;
+        
+        return matchesSearch(row, query) && matchesArea(row, area) && matchesGender(row, gender);
+    });
 
-            currentPage = 1;
-            renderPage();
-        }
+    currentPage = 1;
+    renderPage();
+}
 
         function renderPage() {
             const start = (currentPage - 1) * pageSize;
