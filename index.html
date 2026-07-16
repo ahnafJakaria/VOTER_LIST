@@ -699,7 +699,7 @@
             <option value="ভোলানাথপুর">ভোলানাথপুর</option>
             <option value="মাইজগাঁও">মাইজগাঁও</option>
             <option value="ইউসুফগঞ্জ পূর্বাচল">ইউসুফগঞ্জ পূর্বাচল</option>
-            <option value="কাদিরারটেক">কাদিরারটেক</option> <!-- ✅ নতুন এলাকা যোগ করা হলো -->
+            <option value="কাদিরারটেক">কাদিরারটেক</option>
         </select>
         <select id="genderFilter">
             <option value="">সব</option>
@@ -811,9 +811,9 @@
     // ============================================================
     // ★★★★★ আপনার ডেটা এখানে বসান ★★★★★
     // ============================================================
-     const myVoterData = [
+    const myVoterData = [
        
-               { serial: "০০০১", name: "মোহাম্মদ সানাউল্লাহ মিঞা", voterNo: "৬৭১৪৭৯৭৬৬০০৯", father: "মোঃ উকিল উদ্দিন মিঞা", mother: "হাওয়াতোন নেছা", profession: "ব্যবসা", birth: "২৬/০৮/১৯৭২", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
+ { serial: "০০০১", name: "মোহাম্মদ সানাউল্লাহ মিঞা", voterNo: "৬৭১৪৭৯৭৬৬০০৯", father: "মোঃ উকিল উদ্দিন মিঞা", mother: "হাওয়াতোন নেছা", profession: "ব্যবসা", birth: "২৬/০৮/১৯৭২", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০০২", name: "প্রাণ গোপাল সাহা", voterNo: "৬৭১৪৭৯৭৬৬০৪০", father: "সুরীন্দ্র সাহা", mother: "ঠাকুর দাসী", profession: "ব্যবসা", birth: "০৩/০৬/১৯৫৫", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০০৩", name: "মিন্টু কুমার সাহা", voterNo: "৬৭১৪৭৯৭৬৬০৪২", father: "প্রাণ গোপাল সাহা", mother: "সবিতা রানী সাহা", profession: "ব্যবসা", birth: "১২/০৭/১৯৮৩", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০০৪", name: "অনিল চন্দ্র সরকার", voterNo: "৬৭১৪৭৯৭৬৬০৪৩", father: "চিত্ত মোহন সরকার", mother: "সুখী রানী সরকার", profession: "ব্যবসা", birth: "০৫/০৭/১৯৭৭", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
@@ -842,9 +842,6 @@
   { serial: "০০২৮", name: "যতন পাল রাজবংশী", voterNo: "৬৭১৪৭৯৭৬৬১৭৫", father: "দুঃখাই রাজবংশী", mother: "বিশ্বকা রানী", profession: "ব্যবসা", birth: "০২/০৩/১৯৮০", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০২৯", name: "সরুপ বেপারী", voterNo: "৬৭১৪৭৯৭৬৬১৭৬", father: "নিজাম উদ্দিন বেপারী", mother: "পারভীন আক্তার", profession: "ব্যবসা", birth: "০১/০১/১৯৮২", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০৩০", name: "আমাতুল্লাহ ভূইয়া", voterNo: "৬৭১৪৭৯৭৬৬১৭৯", father: "আঃ ছাদেক ভূঞা", mother: "আছিয়া খাতুন", profession: "ব্যবসা", birth: "১২/১২/১৯৬৭", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
-  { serial: "০০৩১", name: "আঃ ছাদেক ভূঞা", voterNo: "৬৭১৪৭৯৭৬৬১৮০", father: "মোহাম্মদ আলী ভূঞা", mother: "আছিয়া খাতুন", profession: "কৃষক", birth: "০৯/০৪/১৯৪২", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
-  { serial: "০০৩২", name: "স্বপন রাজবংশী", voterNo: "৬৭১৪৭৯৭৬৬১৯", father: "যতন পাল রাজবংশী", mother: "বিশ্বকা রানী", profession: "ব্যবসা", birth: "০৬/০৬/১৯৬৫", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
-  { serial: "০০৩৩", name: "রতন চন্দ্র ঘোষ", voterNo: "৬৭১৪৭৯৭৬৬২২৪", father: "উপেন্দ্র চন্দ্র ঘোষ", mother: "গীতা রানী ঘোষ", profession: "ব্যবসা", birth: "০৬/০৯/১৯৬৫", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০৩৪", name: "স্বপন ঘোষ", voterNo: "৬৭১৪৭৯৭৬৬২২৫", father: "উপেন্দ্র চন্দ্র ঘোষ", mother: "গীতা রানী ঘোষ", profession: "ব্যবসা", birth: "০৪/০২/১৯৪৫", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০৩৫", name: "বিশ্বজিত ঘোষ", voterNo: "৬৭১৪৭৯৭৬৬২২৭", father: "রতন চন্দ্র ঘোষ", mother: "বীনা রানী ঘোষ", profession: "বেসরকারী চাকুরী", birth: "০১/০৫/১৯৮৪", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০৩৬", name: "মোঃ দেলোয়ার হোসেন ভূঞা", voterNo: "৬৭১৪৭৯৭৬৬২২৮", father: "মোঃ হান্নান ভূঞা", mother: "সাহেরা বিবি", profession: "ব্যবসা", birth: "০৬/০৩/১৯৭২", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
@@ -4133,11 +4130,16 @@
   { serial: "৩০", name: "রাজিয়া খাতুন", voterNo: "৬৭১৪৮০৭৯৫৭৫২", father: "রজব আলী", mother: "আছিয়া", profession: "গৃহিনী", birth: "০৫/০২/১৯৫৬", gender: "মহিলা", area: "কাদিরারটেক", address: "কাদিরারটেক, পশি, রূপগঞ্জ, নারায়ণগঞ্জ" },
   { serial: "৩১", name: "হালিমা খাতুন", voterNo: "৬৭১৪৮০৭৯৫৭৬৫", father: "আঃ মজিদ খান", mother: "মোসাঃ সরু বিবি", profession: "গৃহিনী", birth: "২৩/০৯/১৯৩৯", gender: "মহিলা", area: "কাদিরারটেক", address: "পশি, রূপগঞ্জ, নারায়ণগঞ্জ" },
   { serial: "৩২", name: "মুক্তা আক্তার", voterNo: "৬৭১৪৮০০০০০০৩", father: "মোঃ নজরুল ইসলাম ভূঞা", mother: "রহিমা বেগম", profession: "বেকার", birth: "০৫/০৩/১৯৯১", gender: "মহিলা", area: "কাদিরারটেক", address: "কাদিয়ার টেক, পশি, রূপগঞ্জ, নারায়ণগঞ্জ" },
-  { serial: "৩৩", name: "রুবাইদা সুলতানা", voterNo: "৬৭১৪৮০০০০০০৭", father: "মোঃ নিজাম উদ্দিন মোল্লা", mother: "হাবিবা চৌধুরী", profession: "ছাত্র/ছাত্রী", birth: "০৪/১২/১৯৯০", gender: "মহিলা", area: "কাদিরারটেক", address: "কাদিরা টেক, পশি, রূপগঞ্জ, নারায়ণগঞ্জ" }
-
+  { serial: "৩৩", name: "রুবাইদা সুলতানা", voterNo: "৬৭১৪৮০০০০০০৭", father: "মোঃ নিজাম উদ্দিন মোল্লা", mother: "হাবিবা চৌধুরী", profession: "ছাত্র/ছাত্রী", birth: "০৪/১২/১৯৯০", gender: "মহিলা", area: "কাদিরারটেক", address: "কাদিরা টেক, পশি, রূপগঞ্জ, নারায়ণগঞ্জ" },
+ { serial: "০০৩১", name: "আঃ ছাদেক ভূঞা", voterNo: "৬৭১৪৭৯৭৬৬১৮০", father: "মোহাম্মদ আলী ভূঞা", mother: "আছিয়া খাতুন", profession: "কৃষক", birth: "০৯/০৪/১৯৪২", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
+  { serial: "০০৩২", name: "স্বপন রাজবংশী", voterNo: "৬৭১৪৭৯৭৬৬১৯", father: "যতন পাল রাজবংশী", mother: "বিশ্বকা রানী", profession: "ব্যবসা", birth: "০৬/০৬/১৯৬৫", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
+  { serial: "০০৩৩", name: "রতন চন্দ্র ঘোষ", voterNo: "৬৭১৪৭৯৭৬৬২২৪", father: "উপেন্দ্র চন্দ্র ঘোষ", mother: "গীতা রানী ঘোষ", profession: "ব্যবসা", birth: "০৬/০৯/১৯৬৫", gender: "পুরুষ", area: "ইউসুফগঞ্জ" }
+ 
 
     
+    
     ];
+
     // ============================================================
     // SCRIPT - pagination, search, filter, modal
     // ============================================================
@@ -4147,6 +4149,7 @@
             ...row,
             uniqueId: row.voterNo || row.serial + '_' + Math.random().toString(36).substr(2, 5),
             address: row.address || 'ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ',
+            // ✅ যদি area না থাকে তাহলে ডিফল্ট "ইউসুফগঞ্জ" সেট করা হচ্ছে
             area: row.area || 'ইউসুফগঞ্জ',
             gender: row.gender || 'মহিলা'
         }));
@@ -4259,9 +4262,10 @@
             return all.includes(q);
         }
 
+        // ✅ এলাকা ফিল্টার - শুধু area ফিল্ড দিয়ে চেক করবে
         function matchesArea(row, area) {
             if (!area) return true;
-            return normalize(row.area || row.address).includes(normalize(area));
+            return normalize(row.area) === normalize(area);
         }
 
         function matchesGender(row, gender) {
