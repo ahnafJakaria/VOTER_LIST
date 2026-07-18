@@ -8,35 +8,99 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ===== ULTRA PRO MAX CSS ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== RESET & ROOT ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --cyan: #06b6d4;
+            --success: #10b981;
+            --dark: #0f172a;
+            --glass: rgba(255, 255, 255, .72);
+            --shadow: 0 25px 70px rgba(15, 23, 42, .12);
+            --radius: 28px;
+            --bg-body: radial-gradient(circle at top left, #7c3aed44 0%, transparent 35%),
+                        radial-gradient(circle at top right, #2563eb44 0%, transparent 35%),
+                        radial-gradient(circle at bottom left, #06b6d444 0%, transparent 35%),
+                        linear-gradient(135deg, #eef4ff, #f8fbff, #edf7ff);
+            --bg-app: rgba(255, 255, 255, .72);
+            --border-app: rgba(255, 255, 255, .65);
+            --text-primary: #0f172a;
+            --text-secondary: #1f3b54;
+            --bg-search: #f8fbff;
+            --border-search: #e2e8f0;
+            --bg-table-even: #f8fbff;
+            --bg-table-hover: #eef6ff;
+            --bg-stats: rgba(255, 255, 255, .5);
+            --bg-pagination: white;
+            --shadow-pagination: 0 8px 16px rgba(15, 23, 42, .06);
+            --modal-bg: linear-gradient(160deg, #ffffff 0%, #f5f9ff 100%);
+            --slip-row-bg: #fafcff;
+            --slip-row-alt: #f5f8fe;
+            --slip-highlight: #eff6ff;
+        }
+
+        body.dark-mode {
+            --bg-body: radial-gradient(circle at top left, #1e293b 0%, transparent 35%),
+                       radial-gradient(circle at top right, #1e3a8a 0%, transparent 35%),
+                       radial-gradient(circle at bottom left, #0f172a 0%, transparent 35%),
+                       linear-gradient(135deg, #0f172a, #1e293b, #0f172a);
+            --bg-app: rgba(30, 41, 59, .85);
+            --border-app: rgba(255, 255, 255, .1);
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --bg-search: #1e293b;
+            --border-search: #334155;
+            --bg-table-even: #1e293b;
+            --bg-table-hover: #334155;
+            --bg-stats: rgba(30, 41, 59, .6);
+            --bg-pagination: #1e293b;
+            --shadow-pagination: 0 8px 16px rgba(0,0,0,0.3);
+            --modal-bg: linear-gradient(160deg, #1e293b 0%, #0f172a 100%);
+            --slip-row-bg: #1e293b;
+            --slip-row-alt: #172032;
+            --slip-highlight: #1e3a5f;
+            color-scheme: dark;
         }
 
         body {
-            font-family: 'Segoe UI', 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(145deg, #e6edf7 0%, #d0dcee 100%);
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            background: var(--bg-body);
+            background-size: 220% 220%;
+            animation: bgMove 15s ease infinite;
             min-height: 100vh;
             padding: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.2s;
+            color: var(--text-primary);
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .app-container {
-            max-width: 1500px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-radius: 40px;
-            padding: 18px 18px 24px;
-            box-shadow: 0 30px 70px rgba(10, 38, 71, 0.10), 0 10px 30px rgba(0,0,0,0.03);
-            border: 1px solid rgba(255, 255, 255, 0.65);
-            transition: all 0.3s ease;
+            max-width: 1550px;
+            margin: auto;
+            background: var(--bg-app);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid var(--border-app);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            padding: 16px 18px;
+            position: relative;
+            overflow: hidden;
+            transition: .4s;
         }
 
         /* ===== HEADER ===== */
@@ -44,320 +108,319 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            padding-bottom: 12px;
-            margin-bottom: 16px;
-            border-bottom: 2px solid rgba(26, 90, 140, 0.10);
-            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #0f172a, #1d4ed8, #2563eb);
+            color: white;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, .20);
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden;
+            min-height: 60px;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, .10), transparent);
+            right: -180px;
+            top: -180px;
+            animation: rotateGlow 18s linear infinite;
+        }
+
+        @keyframes rotateGlow {
+            100% { transform: rotate(360deg); }
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            z-index: 2;
+            flex-wrap: wrap;
         }
 
         .header-icon {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, #0f2b4f, #1f6a9e);
-            border-radius: 14px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            color: #fff;
-            box-shadow: 0 6px 18px rgba(26, 90, 140, 0.25);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .12);
+            backdrop-filter: blur(15px);
+            font-size: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
         }
 
         .header h1 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: #0a2647;
-            line-height: 1.15;
+            line-height: 1.2;
+            color: white;
+            letter-spacing: -0.3px;
         }
 
-        .header h1 .highlight {
-            color: #1a5a8c;
-            background: linear-gradient(135deg, #1a5a8c, #2563eb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header h1 small {
-            font-size: 0.6rem;
-            font-weight: 400;
-            color: #5a7a9a;
+        .header small {
             display: block;
-            -webkit-text-fill-color: #5a7a9a;
+            color: #dbeafe;
+            font-size: .55rem;
+            margin-top: 0px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
         }
 
         .header-actions {
             display: flex;
             gap: 6px;
+            z-index: 2;
+            align-items: center;
             flex-wrap: wrap;
         }
 
         .header-actions button {
-            padding: 6px 14px;
+            padding: 5px 12px;
             border: none;
-            border-radius: 30px;
+            border-radius: 40px;
+            font-size: .65rem;
             font-weight: 600;
-            font-size: 0.7rem;
             cursor: pointer;
+            transition: .35s;
             display: flex;
             align-items: center;
-            gap: 6px;
-            transition: all 0.25s ease;
-            background: #f0f4fa;
-            color: #1f3b54;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            gap: 4px;
         }
 
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+        }
+        .btn-dark-toggle {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
         .header-actions button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-        }
-
-        .header-actions .btn-primary {
-            background: linear-gradient(135deg, #0a2647, #1a5a8c);
-            color: white;
-            box-shadow: 0 4px 14px rgba(26, 90, 140, 0.20);
-        }
-
-        .header-actions .btn-primary:hover {
-            box-shadow: 0 8px 24px rgba(26, 90, 140, 0.30);
-        }
-
-        .header-actions .btn-success {
-            background: linear-gradient(135deg, #047857, #10b981);
-            color: white;
-            box-shadow: 0 4px 14px rgba(5, 150, 105, 0.20);
-        }
-
-        .header-actions .btn-success:hover {
-            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.30);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, .25);
         }
 
         /* ===== SEARCH PANEL ===== */
         .search-panel {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 60px;
-            padding: 10px 16px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 8px 12px;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr 1fr auto;
+            gap: 12px;
+            padding: 14px 18px;
             margin-bottom: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 6px 24px rgba(0,0,0,0.03);
+            border-radius: 22px;
+            background: var(--bg-app);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-app);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, .04);
         }
 
         .search-panel input,
         .search-panel select {
-            padding: 8px 16px;
-            border: 2px solid #e2ebf5;
-            border-radius: 40px;
-            font-size: 0.78rem;
-            background: white;
-            outline: none;
-            font-family: inherit;
-            flex: 1 1 120px;
-            min-width: 70px;
-            transition: all 0.25s ease;
+            height: 48px;
+            border: none;
+            border-radius: 14px;
+            padding: 0 18px;
+            font-size: 14px;
+            background: var(--bg-search);
+            transition: .35s;
+            box-shadow: inset 0 0 0 2px var(--border-search);
+            color: var(--text-primary);
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            width: 100%;
+        }
+
+        .search-panel input::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 13px;
         }
 
         .search-panel input:focus,
         .search-panel select:focus {
-            border-color: #1a5a8c;
-            box-shadow: 0 0 0 4px rgba(26, 90, 140, 0.08);
+            outline: none;
+            background: var(--bg-search);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, .12), inset 0 0 0 2px #2563eb;
         }
 
-        .search-panel .btn-group {
+        .btn-group {
             display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .search-panel .btn-group button {
-            padding: 8px 18px;
-            border: none;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.72rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-
-        .search-panel .btn-group .search-btn {
-            background: linear-gradient(135deg, #1a5a8c, #2563eb);
+        .search-btn {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
             color: white;
-            box-shadow: 0 4px 12px rgba(26, 90, 140, 0.20);
+            border: none;
+            padding: 0 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(37, 99, 235, .18);
+            font-size: 13px;
+            height: 46px;
         }
 
-        .search-panel .btn-group .search-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(26, 90, 140, 0.30);
-        }
-
-        .search-panel .btn-group .clear-btn {
-            background: #f0f4fa;
-            color: #1f3b54;
-        }
-
-        .search-panel .btn-group .clear-btn:hover {
-            background: #e2ebf5;
-            transform: translateY(-2px);
+        .clear-btn {
+            background: var(--bg-pagination);
+            color: var(--text-primary);
+            border: 1px solid var(--border-search);
+            padding: 0 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            height: 46px;
         }
 
         /* ===== STATS BAR ===== */
         .stats-bar {
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
             align-items: center;
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.5);
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            padding: 2px 12px;
+            background: var(--bg-stats);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 6px 16px;
-            border-radius: 60px;
-            gap: 6px;
-            border: 1px solid rgba(255,255,255,0.7);
+            border-radius: 30px;
+            gap: 4px;
         }
 
         .stats-bar .left {
             display: flex;
-            gap: 12px;
-            font-weight: 500;
-            color: #1f3b54;
+            gap: 8px;
             flex-wrap: wrap;
-            font-size: 0.7rem;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-secondary);
         }
 
         .stats-bar .left span {
-            background: white;
-            padding: 2px 14px;
+            background: var(--bg-pagination);
+            padding: 2px 10px;
             border-radius: 30px;
-            font-size: 0.68rem;
+            font-size: 10px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            color: var(--text-primary);
         }
 
-        .stats-bar .left .stat-male { color: #1e3a8a; }
-        .stats-bar .left .stat-female { color: #880e4f; }
-        .stats-bar .left .stat-total { color: #0a2647; }
+        .stats-bar .left .stat-total { color: #2563eb; }
+        .stats-bar .left .stat-male { color: #2563eb; }
+        .stats-bar .left .stat-female { color: #be185d; }
         .stats-bar .left .stat-result { color: #2563eb; }
 
-        .pagination-controls {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 0.7rem;
-        }
-
-        .pagination-controls button {
-            background: white;
-            border: 2px solid #dce5ef;
-            padding: 3px 12px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.7rem;
-            transition: all 0.2s ease;
-        }
-
-        .pagination-controls button:hover:not(:disabled) {
-            background: #1a5a8c;
-            color: white;
-            border-color: #1a5a8c;
-        }
-
-        .pagination-controls button:disabled {
-            opacity: 0.35;
-            cursor: default;
-        }
-
-        .pagination-controls select {
-            padding: 3px 10px;
-            border-radius: 30px;
-            border: 2px solid #dce5ef;
-            background: white;
-            font-weight: 500;
-            font-size: 0.7rem;
-            outline: none;
-        }
-
-        /* ===== TABLE ===== */
+        /* ===== TABLE - TALLER ROWS ===== */
         .table-wrapper {
-            overflow-x: auto;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            background: white;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            -webkit-overflow-scrolling: touch;
+            overflow: auto;
+            border-radius: 18px;
+            background: var(--bg-app);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, .04);
+            border: 1px solid var(--border-app);
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
-            font-size: 0.72rem;
-            min-width: 600px;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 750px;
         }
 
-        th {
-            background: linear-gradient(135deg, #e2ebf5, #d0dcee);
-            color: #0a2647;
-            font-weight: 700;
-            padding: 10px 8px;
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(135deg, #1e3a5f, #2563eb);
+            color: white;
+            font-size: 12px;
+            padding: 10px 12px;
+            font-weight: 600;
             white-space: nowrap;
-            text-align: center;
-            border-bottom: 3px solid #b8cbe0;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
+
+        tbody tr {
+            transition: .15s;
+            cursor: pointer;
+        }
+        tbody tr:nth-child(even) { background: var(--bg-table-even); }
+        tbody tr:hover { background: var(--bg-table-hover); }
 
         td {
-            padding: 8px 6px;
-            border-bottom: 1px solid #edf2f7;
+            padding: 14px 12px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border-app);
             vertical-align: middle;
-            word-break: break-word;
-            font-size: 0.72rem;
+            color: var(--text-primary);
+            white-space: nowrap;
         }
 
-        tr:last-child td { border-bottom: none; }
-        tr:hover td { background: #f6faff; }
-
-        /* ===== ONLY THE SEARCH WORD IS HIGHLIGHTED IN GREEN ===== */
-        .highlight-word {
-            background: #4caf50 !important;
-            color: #ffffff !important;
+        .serial-col {
+            font-size: 14px;
             font-weight: 700;
-            padding: 0 4px;
-            border-radius: 4px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            color: #2563eb;
+            white-space: nowrap;
+            font-family: 'Inter', monospace;
+        }
+
+        .name-col {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        /* ===== BOTTOM PAGINATION ===== */
+        .bottom-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 4px 0;
+        }
+
+        .bottom-pagination button {
+            background: var(--bg-pagination);
+            color: var(--text-primary);
+            border: 1px solid var(--border-app);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 11px;
+            cursor: pointer;
             transition: all 0.2s ease;
         }
 
-        /* Serial & Name - BOLD & BIGGER */
-        .serial-col {
-            text-align: center;
-            font-weight: 800;
-            font-size: 0.95rem;
-            color: #0a2647;
-            white-space: nowrap;
+        .bottom-pagination button:hover:not(:disabled) {
+            background: #1a5a8c;
+            color: white;
+            border-color: #1a5a8c;
         }
-        .name-col {
-            font-weight: 700;
-            font-size: 0.92rem;
-            color: #0a2647;
+        .bottom-pagination button:disabled { opacity: 0.3; cursor: default; }
+        .bottom-pagination span {
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--text-primary);
+            background: var(--bg-pagination);
+            padding: 4px 14px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-pagination);
         }
 
-        /* ===== MODAL - PRO SLIP (only PDF, no print) ===== */
+        /* ===== MODAL ===== */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -368,23 +431,23 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            padding: 16px;
+            padding: 12px;
         }
-
         .modal-overlay.active { display: flex; }
 
         .modal-content {
-            background: linear-gradient(160deg, #ffffff 0%, #f5f9ff 100%);
-            border-radius: 32px;
+            background: var(--modal-bg);
+            border-radius: 28px;
             padding: 0;
-            max-width: 440px;
+            max-width: 480px;
             width: 100%;
             max-height: 95vh;
             overflow-y: auto;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.20);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.25);
             position: relative;
             animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid var(--border-app);
+            color: var(--text-primary);
         }
 
         @keyframes slideUp {
@@ -394,10 +457,10 @@
 
         .modal-content .close-btn {
             position: absolute;
-            top: 12px;
-            right: 14px;
-            font-size: 1.1rem;
-            background: rgba(255,255,255,0.95);
+            top: 10px;
+            right: 12px;
+            font-size: 1.2rem;
+            background: rgba(255,255,255,0.9);
             border: none;
             cursor: pointer;
             color: #4a5f7a;
@@ -412,7 +475,6 @@
             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
             font-weight: 700;
         }
-
         .modal-content .close-btn:hover {
             background: #fee2e2;
             color: #dc2626;
@@ -422,12 +484,11 @@
         .slip-header {
             position: relative;
             background: linear-gradient(135deg, #0a2647 0%, #1a5a8c 50%, #2563eb 100%);
-            padding: 24px 20px 18px;
-            border-radius: 32px 32px 0 0;
+            padding: 18px 18px 14px;
+            border-radius: 28px 28px 0 0;
             overflow: hidden;
             text-align: center;
         }
-
         .slip-header-bg {
             position: absolute;
             top: -60%;
@@ -437,19 +498,18 @@
             background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
             border-radius: 50%;
         }
-
         .slip-header-content { position: relative; z-index: 2; }
-        .slip-icon { font-size: 2.4rem; display: block; margin-bottom: 2px; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15)); }
+        .slip-icon { font-size: 2.2rem; display: block; margin-bottom: 0px; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.15)); }
         .slip-title { font-size: 1.3rem; font-weight: 800; color: white; margin: 0; letter-spacing: 1px; }
-        .slip-subtitle { font-size: 0.6rem; color: rgba(255,255,255,0.7); margin: 2px 0 6px; letter-spacing: 0.5px; }
-        .slip-badge { display: inline-block; background: rgba(255,255,255,0.10); padding: 2px 14px; border-radius: 30px; font-size: 0.5rem; color: rgba(255,255,255,0.8); letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.05); }
+        .slip-subtitle { font-size: 0.6rem; color: rgba(255,255,255,0.7); margin: 0px 0 4px; letter-spacing: 0.5px; }
+        .slip-badge { display: inline-block; background: rgba(255,255,255,0.10); padding: 2px 12px; border-radius: 30px; font-size: 0.5rem; color: rgba(255,255,255,0.8); letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.05); }
 
         .slip-serial-area-box {
             background: linear-gradient(135deg, #e8f0fe, #dbeafe);
-            border-radius: 16px;
-            padding: 10px 16px 12px;
-            margin: -12px 16px 14px 16px;
-            box-shadow: 0 4px 24px rgba(37,99,235,0.10);
+            border-radius: 14px;
+            padding: 10px 18px 12px;
+            margin: -12px 16px 12px 16px;
+            box-shadow: 0 4px 20px rgba(37,99,235,0.10);
             position: relative;
             z-index: 3;
             display: flex;
@@ -458,123 +518,154 @@
             align-items: center;
             gap: 6px;
         }
-
+        body.dark-mode .slip-serial-area-box {
+            background: linear-gradient(135deg, #1e3a5f, #1e293b);
+        }
         .slip-serial-area-box .serial-box {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
-
         .slip-serial-area-box .serial-box .label {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: #1d3b5a;
         }
-
         .slip-serial-area-box .serial-box .value {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
             color: #0a2647;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             background: white;
-            padding: 0 16px;
-            border-radius: 12px;
+            padding: 0 14px;
+            border-radius: 10px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-            font-family: 'Courier New', monospace;
+            font-family: 'Inter', monospace;
             border: 2px solid rgba(37,99,235,0.10);
-            min-width: 60px;
+            min-width: 45px;
             text-align: center;
             line-height: 1.2;
         }
-
+        body.dark-mode .slip-serial-area-box .serial-box .value {
+            background: #0f172a;
+            color: #f1f5f9;
+            border-color: #334155;
+        }
         .slip-serial-area-box .area-box {
             display: flex;
             align-items: center;
             gap: 4px;
             background: rgba(255,255,255,0.5);
-            padding: 4px 14px;
+            padding: 2px 14px;
             border-radius: 30px;
             border: 1px solid rgba(37,99,235,0.08);
         }
-
+        body.dark-mode .slip-serial-area-box .area-box {
+            background: rgba(15,23,42,0.5);
+            border-color: #334155;
+        }
         .slip-serial-area-box .area-box .label {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 600;
             color: #1d3b5a;
         }
-
         .slip-serial-area-box .area-box .value {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: #0a2647;
         }
+        body.dark-mode .slip-serial-area-box .area-box .label,
+        body.dark-mode .slip-serial-area-box .area-box .value {
+            color: #e2e8f0;
+        }
 
-        .slip-body { padding: 2px 16px 6px; }
+        .slip-body { 
+            padding: 4px 18px 8px; 
+        }
         .slip-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 8px 14px;
-            border-radius: 12px;
+            border-radius: 10px;
             margin-bottom: 4px;
             gap: 8px;
-            background: white;
-            border: 1px solid #f0f4fa;
+            background: var(--slip-row-bg);
+            border: 1px solid var(--border-app);
             transition: all 0.2s ease;
+            font-size: 0.9rem;
+            min-height: 44px;
         }
         .slip-row:hover { border-color: #b3cfe5; }
-        .slip-row .label { font-weight: 600; color: #1d3b5a; flex-shrink: 0; font-size: 0.85rem; }
-        .slip-row .label .emoji { font-size: 0.9rem; margin-right: 4px; }
-        .slip-row .value { text-align: right; font-weight: 500; word-break: break-word; color: #0a2647; font-size: 0.95rem; }
-        .slip-row:nth-child(odd) { background: #fafcff; }
-        .slip-row:nth-child(even) { background: #f5f8fe; }
-        .slip-row.highlight-row { background: linear-gradient(90deg, #eff6ff, #dbeafe); border-left: 4px solid #3b82f6; }
-        .slip-row.highlight-row .value { font-weight: 600; color: #1e40af; }
+        .slip-row .label { 
+            font-weight: 600; 
+            color: var(--text-secondary); 
+            flex-shrink: 0; 
+            font-size: 0.8rem; 
+        }
+        .slip-row .value { 
+            text-align: right; 
+            font-weight: 500; 
+            word-break: break-word; 
+            color: var(--text-primary); 
+            font-size: 0.85rem; 
+        }
+        .slip-row:nth-child(odd) { background: var(--slip-row-bg); }
+        .slip-row:nth-child(even) { background: var(--slip-row-alt); }
+
+        .slip-row.highlight-row-voter { background: var(--slip-highlight); border-left: 4px solid #8b5cf6; }
+        .slip-row.highlight-row-voter .value { font-weight: 700; color: #7c3aed; }
+        .slip-row.highlight-row-birth { background: var(--slip-highlight); border-left: 4px solid #0ea5e9; }
+        .slip-row.highlight-row-birth .value { font-weight: 600; color: #0284c7; font-family: 'Inter', monospace; font-size: 0.85rem; }
+        .slip-row.highlight-row-gender { background: var(--slip-highlight); border-left: 4px solid #ec4899; }
+        .slip-row.highlight-row-gender .value { font-weight: 600; color: #be185d; }
 
         .slip-gender-badge {
             display: inline-block;
-            padding: 2px 16px;
-            border-radius: 30px;
+            padding: 3px 18px;
+            border-radius: 40px;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
         .slip-gender-badge.male { background: linear-gradient(135deg, #dbeafe, #bfdbfe); color: #1e3a8a; }
         .slip-gender-badge.female { background: linear-gradient(135deg, #fce4ec, #f8bbd0); color: #880e4f; }
 
-        .slip-footer { padding: 0 16px 16px; }
+        .slip-footer { 
+            padding: 0 18px 14px; 
+        }
         .slip-watermark {
             text-align: center;
-            font-size: 0.75rem;
-            color: #1a3a5a;
-            border-top: 2px dashed #e3eaf2;
-            padding-top: 10px;
-            margin-top: 2px;
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            border-top: 2px dashed var(--border-app);
+            padding-top: 6px;
+            margin-top: 4px;
             opacity: 0.85;
             letter-spacing: 1px;
             font-weight: 600;
-            background: linear-gradient(90deg, #f0f4fa, #ffffff, #f0f4fa);
+            background: var(--bg-app);
             border-radius: 30px;
-            padding: 8px 0;
+            padding: 6px 0;
         }
         .slip-watermark .heart { color: #ef4444; display: inline-block; animation: heartbeat 1.5s ease-in-out infinite; }
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.15); }
         }
 
-        .slip-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            flex-wrap: wrap;
+        .slip-actions { 
+            display: flex; 
+            gap: 8px; 
+            margin-top: 8px; 
+            flex-wrap: wrap; 
         }
         .slip-actions button {
             flex: 1;
-            padding: 10px 14px;
+            padding: 10px 16px;
             border: none;
             border-radius: 40px;
             font-weight: 700;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             cursor: pointer;
             min-width: 60px;
             transition: all 0.3s ease;
@@ -590,84 +681,179 @@
         }
         .slip-actions .slip-download-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(5,150,105,0.35); }
 
-        /* ===== BOTTOM PAGINATION (extra) ===== */
-        .bottom-pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-top: 16px;
-            padding: 8px 0;
-        }
-        .bottom-pagination button {
-            background: white;
-            border: 2px solid #dce5ef;
-            padding: 6px 18px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #1f3b54;
-        }
-        .bottom-pagination button:hover:not(:disabled) {
-            background: #1a5a8c;
-            color: white;
-            border-color: #1a5a8c;
-            transform: translateY(-2px);
-        }
-        .bottom-pagination button:disabled {
-            opacity: 0.3;
-            cursor: default;
-            transform: none;
-        }
-        .bottom-pagination span {
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: #0a2647;
-            background: rgba(255,255,255,0.6);
-            padding: 4px 16px;
-            border-radius: 30px;
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .search-panel { 
+                grid-template-columns: 1fr 1fr; 
+                padding: 12px 14px; 
+                gap: 8px; 
+            }
+            .search-panel input { 
+                grid-column: 1 / -1;
+                height: 48px; 
+                font-size: 14px; 
+            }
+            .search-panel select { 
+                height: 42px; 
+                font-size: 12px; 
+                padding: 0 10px; 
+            }
+            .btn-group { 
+                grid-column: 1 / -1;
+                display: flex; 
+                gap: 8px; 
+            }
+            .search-btn, .clear-btn { 
+                flex: 1; 
+                height: 42px; 
+                font-size: 12px; 
+                padding: 0 12px;
+            }
+            .stats-bar { 
+                flex-direction: column; 
+                align-items: stretch; 
+                padding: 4px 12px; 
+            }
+            .stats-bar .left { justify-content: center; }
+            .table-wrapper { border-radius: 14px; }
+            table { min-width: 600px; }
+            td { 
+                font-size: 12px; 
+                padding: 12px 8px; 
+                white-space: nowrap;
+            }
+            thead th { font-size: 10px; padding: 8px 8px; }
+            .header { 
+                padding: 6px 12px; 
+                min-height: 50px; 
+            }
+            .header h1 { font-size: 0.9rem; }
+            .header-icon { width: 32px; height: 32px; font-size: 16px; }
+            .header-actions button { 
+                padding: 4px 8px; 
+                font-size: 0.55rem; 
+            }
+            .header-actions .btn-success { display: none; }
+            
+            .modal-content { 
+                max-width: 100%; 
+                margin: 6px; 
+                max-height: 95vh;
+            }
+            .header-actions .btn-dark-toggle {
+                padding: 2px 6px;
+                font-size: 0.5rem;
+                min-width: 28px;
+            }
+            .slip-row {
+                padding: 12px 16px;
+                font-size: 1rem;
+                min-height: 54px;
+                border-radius: 12px;
+                margin-bottom: 6px;
+            }
+            .slip-row .label { font-size: 0.95rem; }
+            .slip-row .value { font-size: 1rem; }
+            .slip-serial-area-box .serial-box .value { font-size: 2.2rem; padding: 0 16px; }
+            .slip-header { padding: 20px 16px 16px; }
+            .slip-title { font-size: 1.4rem; }
+            .slip-icon { font-size: 2.4rem; }
+            .slip-body { padding: 6px 16px 10px; }
+            .slip-footer { padding: 0 16px 14px; }
+            .slip-actions button { padding: 12px 16px; font-size: 0.85rem; }
+            .slip-watermark { font-size: 0.75rem; padding: 8px 0; }
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .app-container { padding: 12px 10px 16px; border-radius: 28px; }
-            .header h1 { font-size: 1.0rem; }
-            .header-icon { width: 36px; height: 36px; font-size: 18px; }
-            .search-panel { padding: 8px 12px; border-radius: 40px; }
-            .search-panel input, .search-panel select { padding: 6px 12px; font-size: 0.7rem; flex: 1 1 80px; min-width: 60px; }
-            .search-panel .btn-group button { padding: 6px 12px; font-size: 0.65rem; }
-            .stats-bar .left { gap: 6px; font-size: 0.6rem; }
-            .stats-bar .left span { padding: 1px 10px; font-size: 0.6rem; }
-            .stats-bar { padding: 4px 12px; }
-            .modal-content { max-width: 100%; margin: 8px; }
-            .slip-serial-area-box .serial-box .value { font-size: 1.8rem; padding: 0 12px; }
-            .slip-serial-area-box { flex-direction: column; align-items: stretch; gap: 6px; }
-            .slip-serial-area-box .area-box { justify-content: center; }
-            .slip-row .label { font-size: 0.75rem; }
-            .slip-row .value { font-size: 0.85rem; }
-            .header-actions button { padding: 4px 10px; font-size: 0.6rem; }
-            .pagination-controls button { padding: 2px 8px; font-size: 0.6rem; }
-            .bottom-pagination button { padding: 4px 14px; font-size: 0.65rem; }
-            .bottom-pagination span { font-size: 0.7rem; padding: 2px 12px; }
-            .serial-col { font-size: 0.8rem; }
-            .name-col { font-size: 0.78rem; }
-            td { font-size: 0.65rem; padding: 6px 4px; }
-            th { font-size: 0.58rem; padding: 8px 4px; }
+        @media (max-width: 500px) {
+            body { padding: 4px; }
+            .app-container { padding: 8px; border-radius: 16px; }
+            .header { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 6px; 
+                padding: 8px; 
+            }
+            .header-left { flex-direction: column; gap: 4px; }
+            .header h1 { font-size: 0.8rem; }
+            .header-actions { 
+                width: 100%; 
+                justify-content: center; 
+            }
+            .header-actions button { 
+                flex: 1; 
+                white-space: nowrap; 
+                font-size: 0.5rem; 
+                padding: 4px 6px; 
+            }
+            .header-actions .btn-dark-toggle {
+                flex: 0.4;
+                font-size: 0.45rem;
+                padding: 2px 4px;
+                min-width: 24px;
+            }
+            .header-actions .btn-success { display: none; }
+            .search-panel { 
+                grid-template-columns: 1fr 1fr; 
+                padding: 10px 10px; 
+                gap: 6px; 
+            }
+            .search-panel input { 
+                grid-column: 1 / -1;
+                height: 44px; 
+                font-size: 13px; 
+                padding: 0 12px;
+            }
+            .search-panel select { 
+                height: 38px; 
+                font-size: 11px; 
+                padding: 0 8px; 
+            }
+            .btn-group { 
+                grid-column: 1 / -1;
+                gap: 6px; 
+            }
+            .search-btn, .clear-btn { 
+                height: 38px; 
+                font-size: 11px; 
+                padding: 0 10px;
+            }
+            .serial-col { font-size: 0.65rem; }
+            .name-col { font-size: 0.7rem; }
+            td { 
+                font-size: 0.55rem; 
+                padding: 10px 4px; 
+                white-space: nowrap;
+            }
+            th { font-size: 0.45rem; padding: 6px 3px; }
+            .stats-bar .left span { font-size: 0.5rem; padding: 1px 6px; }
+            .bottom-pagination button { font-size: 0.5rem; padding: 2px 8px; }
+            .bottom-pagination span { font-size: 0.5rem; padding: 2px 8px; }
+            
+            .slip-serial-area-box .serial-box .value { font-size: 2rem; padding: 0 14px; }
+            .slip-row { 
+                font-size: 0.95rem; 
+                padding: 12px 14px; 
+                min-height: 52px;
+                border-radius: 12px;
+                margin-bottom: 6px;
+            }
+            .slip-row .label { font-size: 0.9rem; }
+            .slip-row .value { font-size: 0.95rem; }
+            .slip-title { font-size: 1.2rem; }
+            .slip-icon { font-size: 2rem; }
+            .modal-content { max-width: 100%; margin: 4px; }
         }
 
         @media print {
-            body { background: white; padding: 0; }
-            .app-container { box-shadow: none; border-radius: 0; padding: 8px; background: white; backdrop-filter: none; }
-            .search-panel, .stats-bar .left, .pagination-controls, .header-actions, .btn-group, .bottom-pagination { display: none !important; }
-            .table-wrapper { border: none; box-shadow: none; }
+            body { background: white !important; padding: 0; }
+            .app-container { box-shadow: none !important; border-radius: 0 !important; padding: 4px !important; background: white !important; backdrop-filter: none !important; }
+            .search-panel, .stats-bar .left, .header-actions, .btn-group, .bottom-pagination { display: none !important; }
+            .table-wrapper { border: none !important; box-shadow: none !important; }
             th { background: #f0f4fa !important; }
-            .highlight-word { background: #4caf50 !important; color: white !important; }
-            .stats-bar { justify-content: flex-end; background: transparent; backdrop-filter: none; }
+            .stats-bar { background: transparent !important; backdrop-filter: none !important; justify-content: flex-end; }
             .modal-overlay { display: none !important; }
-            td, th { font-size: 0.6rem; padding: 4px 3px; }
-            .header { border-bottom-color: #ccc; }
+            td, th { font-size: 0.5rem !important; padding: 4px 2px !important; }
+            .header { background: #0f172a !important; border-bottom-color: #ccc; }
         }
     </style>
 </head>
@@ -680,13 +866,12 @@
             <div class="header-icon">🗳️</div>
             <h1>
                 <span class="highlight">ভোটার তালিকা</span>
-                <small>রূপগঞ্জ · ইউসুফগঞ্জ</small>
-                <small style="color: #d11b1b; font-size: 0.5rem;">তৈরি করেছে জাকারিয়া</small>
+                <small>রূপগঞ্জ · ইউসুফগঞ্জ · তৈরি করেছে জাকারিয়া</small>
             </h1>
         </div>
         <div class="header-actions">
+            <button class="btn-dark-toggle" id="darkToggle"><i class="fas fa-moon"></i></button>
             <button class="btn-primary" id="printBtn"><i class="fas fa-print"></i> প্রিন্ট</button>
-            <button class="btn-success" id="downloadPdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>
         </div>
     </div>
 
@@ -702,7 +887,7 @@
             <option value="কাদিরারটেক">কাদিরারটেক</option>
         </select>
         <select id="genderFilter">
-            <option value="">সব</option>
+            <option value="">সব লিঙ্গ</option>
             <option value="পুরুষ">পুরুষ</option>
             <option value="মহিলা">মহিলা</option>
         </select>
@@ -720,17 +905,6 @@
             <span class="stat-female"><i class="fas fa-female"></i> মহিলা: <strong id="femaleCount">0</strong></span>
             <span class="stat-result"><i class="fas fa-filter"></i> ফলাফল: <strong id="resultCount">0</strong></span>
         </div>
-        <div class="pagination-controls">
-            <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
-            <span id="pageInfo">পৃষ্ঠা ১</span>
-            <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
-            <select id="pageSizeSelect">
-                <option value="20">২০</option>
-                <option value="50" selected>৫০</option>
-                <option value="100">১০০</option>
-                <option value="200">২০০</option>
-            </select>
-        </div>
     </div>
 
     <!-- ===== TABLE ===== -->
@@ -747,25 +921,23 @@
                     <th>এলাকা</th>
                 </tr>
             </thead>
-            <tbody id="tableBody">
-                <!-- Data will be rendered here -->
-            </tbody>
+            <tbody id="tableBody"></tbody>
         </table>
     </div>
 
-    <!-- ===== BOTTOM PAGINATION ===== -->
+    <!-- ===== BOTTOM PAGINATION + PDF ===== -->
     <div class="bottom-pagination">
         <button id="bottomPrev" disabled><i class="fas fa-chevron-left"></i> আগে</button>
         <span id="bottomPageInfo">পৃষ্ঠা ১ / ১</span>
         <button id="bottomNext">পরে <i class="fas fa-chevron-right"></i></button>
+        <button class="btn-success" id="downloadPdfBtn" style="background:linear-gradient(135deg,#10b981,#34d399);color:white;border:none;padding:4px 14px;border-radius:30px;font-weight:600;font-size:11px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;"><i class="fas fa-file-pdf"></i> PDF</button>
     </div>
 </div>
 
-<!-- ===== MODAL - PRO SLIP (only PDF, no print) ===== -->
+<!-- ===== MODAL ===== -->
 <div class="modal-overlay" id="slipModal">
     <div class="modal-content">
         <button class="close-btn" id="modalCloseBtn">✕</button>
-
         <div class="slip-header">
             <div class="slip-header-bg"></div>
             <div class="slip-header-content">
@@ -775,7 +947,6 @@
                 <span class="slip-badge">★ ভোটার তথ্য ★</span>
             </div>
         </div>
-
         <div class="slip-serial-area-box">
             <div class="serial-box">
                 <span class="label"><i class="fas fa-hashtag"></i> সিরিয়াল</span>
@@ -786,18 +957,16 @@
                 <span class="value" id="slipArea">—</span>
             </div>
         </div>
-
         <div class="slip-body" id="slipBody">
             <div class="slip-row"><span class="label">নাম</span><span class="value" id="slipName">—</span></div>
-            <div class="slip-row highlight-row"><span class="label">ভোটার নম্বর</span><span class="value" id="slipVoterNo">—</span></div>
+            <div class="slip-row highlight-row-voter"><span class="label">ভোটার নম্বর</span><span class="value" id="slipVoterNo">—</span></div>
             <div class="slip-row"><span class="label">পিতা</span><span class="value" id="slipFather">—</span></div>
             <div class="slip-row"><span class="label">মাতা</span><span class="value" id="slipMother">—</span></div>
-            <div class="slip-row highlight-row"><span class="label">পেশা</span><span class="value" id="slipProfession">—</span></div>
-            <div class="slip-row"><span class="label">জন্ম তারিখ</span><span class="value" id="slipBirth">—</span></div>
+            <div class="slip-row"><span class="label">পেশা</span><span class="value" id="slipProfession">—</span></div>
+            <div class="slip-row highlight-row-birth"><span class="label">জন্ম তারিখ</span><span class="value" id="slipBirth">—</span></div>
             <div class="slip-row"><span class="label">ঠিকানা</span><span class="value" id="slipAddress">—</span></div>
-            <div class="slip-row highlight-row"><span class="label">লিঙ্গ</span><span class="value" id="slipGender">—</span></div>
+            <div class="slip-row highlight-row-gender"><span class="label">লিঙ্গ</span><span class="value" id="slipGender">—</span></div>
         </div>
-
         <div class="slip-footer">
             <div class="slip-watermark"><span class="heart">❤️</span> ধন্যবাদ জাকারিয়া <span class="heart">❤️</span></div>
             <div class="slip-actions">
@@ -808,11 +977,10 @@
 </div>
 
 <script>
-    // ============================================================
-    // ★★★★★ আপনার ডেটা এখানে বসান ★★★★★
-    // ============================================================
-    const myVoterData = [
-       
+    (function() {
+        // ===== DATA =====
+        const myVoterData = [
+         
  { serial: "০০০১", name: "মোহাম্মদ সানাউল্লাহ মিঞা", voterNo: "৬৭১৪৭৯৭৬৬০০৯", father: "মোঃ উকিল উদ্দিন মিঞা", mother: "হাওয়াতোন নেছা", profession: "ব্যবসা", birth: "২৬/০৮/১৯৭২", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০০২", name: "প্রাণ গোপাল সাহা", voterNo: "৬৭১৪৭৯৭৬৬০৪০", father: "সুরীন্দ্র সাহা", mother: "ঠাকুর দাসী", profession: "ব্যবসা", birth: "০৩/০৬/১৯৫৫", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
   { serial: "০০০৩", name: "মিন্টু কুমার সাহা", voterNo: "৬৭১৪৭৯৭৬৬০৪২", father: "প্রাণ গোপাল সাহা", mother: "সবিতা রানী সাহা", profession: "ব্যবসা", birth: "১২/০৭/১৯৮৩", gender: "পুরুষ", area: "ইউসুফগঞ্জ" },
@@ -4138,22 +4306,17 @@
 
     
     
-    ];
+        ];
 
-    // ============================================================
-    // SCRIPT - pagination, search, filter, modal
-    // ============================================================
-
-    (function() {
         const finalData = myVoterData.map(row => ({
             ...row,
             uniqueId: row.voterNo || row.serial + '_' + Math.random().toString(36).substr(2, 5),
             address: row.address || 'ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ',
-            // ✅ যদি area না থাকে তাহলে ডিফল্ট "ইউসুফগঞ্জ" সেট করা হচ্ছে
             area: row.area || 'ইউসুফগঞ্জ',
             gender: row.gender || 'মহিলা'
         }));
 
+        // ===== DOM REFS =====
         const tbody = document.getElementById('tableBody');
         const searchInput = document.getElementById('searchInput');
         const areaFilter = document.getElementById('areaFilter');
@@ -4162,41 +4325,26 @@
         const clearBtn = document.getElementById('clearBtn');
         const totalSpan = document.getElementById('totalCount');
         const resultSpan = document.getElementById('resultCount');
-        const prevBtn = document.getElementById('prevPage');
-        const nextBtn = document.getElementById('nextPage');
-        const pageInfo = document.getElementById('pageInfo');
-        const pageSizeSelect = document.getElementById('pageSizeSelect');
         const maleSpan = document.getElementById('maleCount');
         const femaleSpan = document.getElementById('femaleCount');
         const bottomPrev = document.getElementById('bottomPrev');
         const bottomNext = document.getElementById('bottomNext');
         const bottomPageInfo = document.getElementById('bottomPageInfo');
-
         const modal = document.getElementById('slipModal');
         const modalClose = document.getElementById('modalCloseBtn');
         const slipDownloadBtn = document.getElementById('slipDownloadBtn');
+        const darkToggle = document.getElementById('darkToggle');
+        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
 
+        // ===== STATE =====
         let currentPage = 1;
-        let pageSize = 50;
+        let pageSize = 200;
         let filteredData = [...finalData];
         let currentSlipRow = null;
 
         function normalize(str) { return (str || '').toString().toLowerCase(); }
 
-        // ===== ONLY HIGHLIGHT THE SEARCH WORDS =====
-        function highlightText(text, query) {
-            if (!query || !text) return text || '';
-            const q = query.toLowerCase().trim();
-            const words = q.split(/\s+/).filter(w => w.length > 0);
-            if (words.length === 0) return text;
-            
-            let result = text;
-            const escapedWords = words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-            const regex = new RegExp(`(${escapedWords.join('|')})`, 'gi');
-            result = result.replace(regex, match => `<span class="highlight-word">${match}</span>`);
-            return result;
-        }
-
+        // ===== IMPROVED SEARCH - no highlight, full word matching =====
         function matchesSearch(row, query) {
             if (!query) return true;
             const q = query.toLowerCase().trim();
@@ -4206,13 +4354,6 @@
                 return str.replace(/[০-৯]/g, function(d) {
                     return '০১২৩৪৫৬৭৮৯'.indexOf(d);
                 });
-            }
-            
-            function normalizeDate(str) {
-                if (!str) return '';
-                let date = toEnglishNum(str);
-                date = date.replace(/[.-]/g, '/');
-                return date;
             }
             
             function toEnglishName(bangla) {
@@ -4230,42 +4371,79 @@
                 };
                 return bangla.split('').map(char => map[char] || char).join('');
             }
-            
+
+            // Helper to remove Bengali diacritics for better matching
+            function removeDiacritics(str) {
+                if (!str) return '';
+                const map = {
+                    'া': '', 'ি': '', 'ী': '', 'ু': '', 'ূ': '', 'ৃ': '',
+                    'ে': '', 'ৈ': '', 'ো': '', 'ৌ': '',
+                    'ং': '', 'ঃ': '', 'ঁ': ''
+                };
+                return str.split('').map(char => map[char] || char).join('');
+            }
+
+            // Build searchable text with multiple variations
             const serialEng = toEnglishNum(row.serial);
             const voterEng = toEnglishNum(row.voterNo);
             const birthOriginal = row.birth || '';
             const birthEng = toEnglishNum(birthOriginal);
-            const birthNormal = normalizeDate(birthOriginal);
-            const birthDot = birthEng.replace(/\//g, '.');
-            const birthDash = birthEng.replace(/\//g, '-');
             
-            const nameEng = toEnglishName(row.name);
-            const fatherEng = toEnglishName(row.father);
-            const motherEng = toEnglishName(row.mother);
-            const areaEng = toEnglishName(row.area);
-            const addressEng = toEnglishName(row.address);
-            const professionEng = toEnglishName(row.profession);
+            const nameRaw = row.name || '';
+            const nameLower = nameRaw.toLowerCase();
+            const nameEng = toEnglishName(nameRaw);
+            const nameNoDiacritic = removeDiacritics(nameRaw);
             
-            const all = [
+            const fatherRaw = row.father || '';
+            const fatherLower = fatherRaw.toLowerCase();
+            const fatherEng = toEnglishName(fatherRaw);
+            
+            const motherRaw = row.mother || '';
+            const motherLower = motherRaw.toLowerCase();
+            const motherEng = toEnglishName(motherRaw);
+            
+            const areaRaw = row.area || '';
+            const areaLower = areaRaw.toLowerCase();
+            const areaEng = toEnglishName(areaRaw);
+            
+            const addressRaw = row.address || '';
+            const addressLower = addressRaw.toLowerCase();
+            const addressEng = toEnglishName(addressRaw);
+            
+            const professionRaw = row.profession || '';
+            const professionLower = professionRaw.toLowerCase();
+            const professionEng = toEnglishName(professionRaw);
+            
+            // Create a comprehensive search string with all variations
+            const searchText = [
                 row.serial, serialEng,
-                row.name, row.name.toLowerCase(), nameEng,
+                nameRaw, nameLower, nameEng, nameNoDiacritic,
                 row.voterNo, voterEng,
-                row.father, row.father.toLowerCase(), fatherEng,
-                row.mother, row.mother.toLowerCase(), motherEng,
-                row.profession, row.profession.toLowerCase(), professionEng,
-                birthOriginal, birthEng, birthNormal, birthDot, birthDash,
-                row.address, row.address.toLowerCase(), addressEng,
+                fatherRaw, fatherLower, fatherEng,
+                motherRaw, motherLower, motherEng,
+                professionRaw, professionLower, professionEng,
+                birthOriginal, birthEng,
+                addressRaw, addressLower, addressEng,
                 row.gender, row.gender.toLowerCase(),
-                row.area, row.area.toLowerCase(), areaEng
+                areaRaw, areaLower, areaEng
             ].join(' ').toLowerCase();
+
+            // Check if query is contained in the search text
+            // Split query into words and check if all words are present
+            const queryWords = q.split(/\s+/).filter(w => w.length > 0);
             
-            return all.includes(q);
+            // If multiple words, check if all are present (AND search)
+            if (queryWords.length > 1) {
+                return queryWords.every(word => searchText.includes(word));
+            }
+            
+            // Single word search - direct match
+            return searchText.includes(q);
         }
 
-        // ✅ এলাকা ফিল্টার - শুধু area ফিল্ড দিয়ে চেক করবে
         function matchesArea(row, area) {
             if (!area) return true;
-            return normalize(row.area) === normalize(area);
+            return normalize(row.area || row.address).includes(normalize(area));
         }
 
         function matchesGender(row, gender) {
@@ -4277,12 +4455,8 @@
             const query = searchInput.value;
             const area = areaFilter.value;
             const gender = genderFilter.value;
-
             filteredData = finalData.filter(row => {
-                if (!row.name && !row.voterNo) return false;
-                return matchesSearch(row, query) && 
-                       matchesArea(row, area) && 
-                       matchesGender(row, gender);
+                return matchesSearch(row, query) && matchesArea(row, area) && matchesGender(row, gender);
             });
             currentPage = 1;
             renderPage();
@@ -4292,7 +4466,6 @@
             const start = (currentPage - 1) * pageSize;
             const end = Math.min(start + pageSize, filteredData.length);
             const pageData = filteredData.slice(start, end);
-            const query = searchInput.value;
 
             totalSpan.textContent = finalData.length;
             maleSpan.textContent = filteredData.filter(r => r.gender === 'পুরুষ').length;
@@ -4301,28 +4474,25 @@
 
             const totalPages = Math.ceil(filteredData.length / pageSize) || 1;
             const pageText = `পৃষ্ঠা ${currentPage} / ${totalPages}`;
-            pageInfo.textContent = pageText;
             bottomPageInfo.textContent = pageText;
-            prevBtn.disabled = currentPage <= 1;
-            nextBtn.disabled = currentPage >= totalPages;
             bottomPrev.disabled = currentPage <= 1;
             bottomNext.disabled = currentPage >= totalPages;
 
             if (pageData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:20px;color:#5a7a9a;"><i class="fas fa-search" style="margin-right:8px;"></i>কোনো ভোটার খুঁজে পাওয়া যায়নি</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:16px;color:var(--text-secondary);"><i class="fas fa-search" style="margin-right:8px;"></i>কোনো ভোটার খুঁজে পাওয়া যায়নি</td></tr>`;
                 return;
             }
 
             let html = '';
             pageData.forEach((row) => {
-                const highlightedName = query ? highlightText(row.name, query) : row.name;
+                // No highlight - just plain text
                 html += `<tr data-voter="${row.voterNo}">
                     <td class="serial-col">${row.serial || ''}</td>
-                    <td class="name-col">${highlightedName || ''}</td>
+                    <td class="name-col">${row.name || ''}</td>
                     <td>${row.voterNo || ''}</td>
                     <td>${row.father || ''}</td>
                     <td>${row.mother || ''}</td>
-                    <td>${row.birth || ''}</td>
+                    <td style="font-family:'Inter',monospace;font-size:12px;white-space:nowrap;">${row.birth || ''}</td>
                     <td>${row.area || ''}</td>
                 </tr>`;
             });
@@ -4332,10 +4502,7 @@
                 tr.addEventListener('click', function() {
                     const voterNo = this.dataset.voter;
                     const row = finalData.find(r => r.voterNo === voterNo);
-                    if (row) { 
-                        currentSlipRow = row; 
-                        showSlip(row); 
-                    }
+                    if (row) { currentSlipRow = row; showSlip(row); }
                 });
             });
         }
@@ -4356,113 +4523,123 @@
         }
 
         function closeModal() { modal.classList.remove('active'); currentSlipRow = null; }
-        
-        // ===== MODAL EVENTS =====
+
+        // ===== EVENTS =====
         modalClose.addEventListener('click', closeModal);
         modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-        // ===== SLIP DOWNLOAD =====
         slipDownloadBtn.addEventListener('click', function() {
             if (!currentSlipRow) { alert('প্রথমে একটি ভোটার নির্বাচন করুন!'); return; }
             const wrapper = document.createElement('div');
-            wrapper.style.cssText = 'font-family: "Segoe UI", "Noto Sans Bengali", sans-serif; padding: 20px; max-width: 480px; margin: 0 auto; background: #f5f9ff; border-radius: 20px;';
+            wrapper.style.cssText = 'font-family: "Inter", "Hind Siliguri", sans-serif; padding: 16px; max-width: 440px; margin: 0 auto; background: #f5f9ff; border-radius: 20px;';
             const row = currentSlipRow;
             wrapper.innerHTML = `
-                <div style="text-align:center;padding:20px 20px 16px;background:linear-gradient(135deg,#0a2647,#1a5a8c);color:white;border-radius:20px 20px 0 0;margin:-20px -20px 0 -20px;">
-                    <div style="font-size:2.5rem;">🗳️</div>
-                    <h2 style="margin:4px 0;font-weight:700;">ভোটার স্লিপ</h2>
-                    <p style="font-size:0.65rem;opacity:0.8;">ইউসুফগঞ্জ · রূপগঞ্জ · নারায়ণগঞ্জ</p>
+                <div style="text-align:center;padding:16px 16px 12px;background:linear-gradient(135deg,#0a2647,#1a5a8c);color:white;border-radius:20px 20px 0 0;margin:-16px -16px 0 -16px;">
+                    <div style="font-size:2rem;">🗳️</div>
+                    <h2 style="margin:2px 0;font-weight:700;font-size:1rem;">ভোটার স্লিপ</h2>
+                    <p style="font-size:0.5rem;opacity:0.8;">ইউসুফগঞ্জ · রূপগঞ্জ · নারায়ণগঞ্জ</p>
                 </div>
-                <div style="background:#e8f0fe;padding:12px 18px;margin:12px 0 16px;border-radius:14px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;">
-                    <div style="display:flex;align-items:center;gap:10px;">
-                        <span style="font-weight:600;font-size:0.85rem;"><i class="fas fa-hashtag"></i> সিরিয়াল</span>
-                        <span style="font-size:2.2rem;font-weight:900;background:white;padding:0 16px;border-radius:10px;border:2px solid rgba(37,99,235,0.15);">${row.serial || '—'}</span>
+                <div style="background:#e8f0fe;padding:8px 12px;margin:10px 0 10px;border-radius:12px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px;">
+                    <div style="display:flex;align-items:center;gap:6px;">
+                        <span style="font-weight:600;font-size:0.6rem;"><i class="fas fa-hashtag"></i> সিরিয়াল</span>
+                        <span style="font-size:1.8rem;font-weight:900;background:white;padding:0 12px;border-radius:8px;border:2px solid rgba(37,99,235,0.12);">${row.serial || '—'}</span>
                     </div>
-                    <div style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.6);padding:4px 14px;border-radius:30px;">
-                        <span style="font-size:0.7rem;font-weight:600;"><i class="fas fa-map-marker-alt"></i> এলাকা</span>
-                        <span style="font-size:0.85rem;font-weight:700;">${row.area || 'ইউসুফগঞ্জ'}</span>
-                    </div>
-                </div>
-                <div style="padding:0 4px;">
-                    <div style="display:flex;justify-content:space-between;padding:6px 12px;background:#fafcff;border-radius:10px;margin-bottom:4px;border:1px solid #f0f4fa;">
-                        <span style="font-weight:600;font-size:0.8rem;">নাম</span>
-                        <span style="font-weight:500;font-size:0.85rem;">${row.name || '—'}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:6px 12px;background:#eff6ff;border-radius:10px;margin-bottom:4px;border-left:4px solid #3b82f6;">
-                        <span style="font-weight:600;font-size:0.8rem;">ভোটার নম্বর</span>
-                        <span style="font-weight:600;font-size:0.85rem;color:#1e40af;">${row.voterNo || '—'}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:6px 12px;background:#fafcff;border-radius:10px;margin-bottom:4px;border:1px solid #f0f4fa;">
-                        <span style="font-weight:600;font-size:0.8rem;">পিতা</span>
-                        <span style="font-weight:500;font-size:0.85rem;">${row.father || '—'}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:6px 12px;background:#fafcff;border-radius:10px;margin-bottom:4px;border:1px solid #f0f4fa;">
-                        <span style="font-weight:600;font-size:0.8rem;">মাতা</span>
-                        <span style="font-weight:500;font-size:0.85rem;">${row.mother || '—'}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:6px 12px;background:#eff6ff;border-radius:10px;margin-bottom:4px;border-left:4px solid #3b82f6;">
-                        <span style="font-weight:600;font-size:0.8rem;">পেশা</span>
-                        <span style="font-weight:600;font-size:0.85rem;color:#1e40af;">${row.profession || '—'}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:6px 12px;background:#fafcff;border-radius:10px;margin-bottom:4px;border:1px solid #f0f4fa;">
-                        <span style="font-weight:600;font-size:0.8rem;">জন্ম তারিখ</span>
-                        <span style="font-weight:500;font-size:0.85rem;">${row.birth || '—'}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:6px 12px;background:#fafcff;border-radius:10px;margin-bottom:4px;border:1px solid #f0f4fa;">
-                        <span style="font-weight:600;font-size:0.8rem;">ঠিকানা</span>
-                        <span style="font-weight:500;font-size:0.85rem;">${row.address || 'ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ'}</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;padding:6px 12px;background:#eff6ff;border-radius:10px;margin-bottom:4px;border-left:4px solid #3b82f6;">
-                        <span style="font-weight:600;font-size:0.8rem;">লিঙ্গ</span>
-                        <span style="font-weight:600;font-size:0.85rem;color:#1e40af;background:${row.gender === 'পুরুষ' ? '#dbeafe' : '#fce4ec'};padding:0 14px;border-radius:30px;">${row.gender || 'মহিলা'}</span>
+                    <div style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.6);padding:2px 12px;border-radius:30px;">
+                        <span style="font-size:0.5rem;font-weight:600;"><i class="fas fa-map-marker-alt"></i> এলাকা</span>
+                        <span style="font-size:0.65rem;font-weight:700;">${row.area || 'ইউসুফগঞ্জ'}</span>
                     </div>
                 </div>
-                <div style="text-align:center;color:#94a3b8;border-top:2px dashed #e3eaf2;padding-top:12px;margin-top:12px;font-size:0.65rem;letter-spacing:1px;">
+                <div style="padding:0 2px;">
+                    <div style="display:flex;justify-content:space-between;padding:4px 10px;background:#fafcff;border-radius:8px;margin-bottom:2px;border:1px solid #f0f4fa;">
+                        <span style="font-weight:600;font-size:0.65rem;">নাম</span>
+                        <span style="font-weight:500;font-size:0.7rem;">${row.name || '—'}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 10px;background:#eff6ff;border-radius:8px;margin-bottom:2px;border-left:4px solid #8b5cf6;">
+                        <span style="font-weight:600;font-size:0.65rem;">ভোটার নম্বর</span>
+                        <span style="font-weight:600;font-size:0.7rem;color:#7c3aed;">${row.voterNo || '—'}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 10px;background:#fafcff;border-radius:8px;margin-bottom:2px;border:1px solid #f0f4fa;">
+                        <span style="font-weight:600;font-size:0.65rem;">পিতা</span>
+                        <span style="font-weight:500;font-size:0.7rem;">${row.father || '—'}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 10px;background:#fafcff;border-radius:8px;margin-bottom:2px;border:1px solid #f0f4fa;">
+                        <span style="font-weight:600;font-size:0.65rem;">মাতা</span>
+                        <span style="font-weight:500;font-size:0.7rem;">${row.mother || '—'}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 10px;background:#fafcff;border-radius:8px;margin-bottom:2px;border:1px solid #f0f4fa;">
+                        <span style="font-weight:600;font-size:0.65rem;">পেশা</span>
+                        <span style="font-weight:500;font-size:0.7rem;">${row.profession || '—'}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 10px;background:#eff6ff;border-radius:8px;margin-bottom:2px;border-left:4px solid #0ea5e9;">
+                        <span style="font-weight:600;font-size:0.65rem;">জন্ম তারিখ</span>
+                        <span style="font-weight:600;font-size:0.7rem;color:#0284c7;font-family:'Inter',monospace;">${row.birth || '—'}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 10px;background:#fafcff;border-radius:8px;margin-bottom:2px;border:1px solid #f0f4fa;">
+                        <span style="font-weight:600;font-size:0.65rem;">ঠিকানা</span>
+                        <span style="font-weight:500;font-size:0.7rem;">${row.address || 'ইউসুফগঞ্জ, রূপগঞ্জ, নারায়ণগঞ্জ'}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:4px 10px;background:#eff6ff;border-radius:8px;margin-bottom:2px;border-left:4px solid #ec4899;">
+                        <span style="font-weight:600;font-size:0.65rem;">লিঙ্গ</span>
+                        <span style="font-weight:600;font-size:0.7rem;color:#be185d;background:${row.gender === 'পুরুষ' ? '#dbeafe' : '#fce4ec'};padding:0 12px;border-radius:30px;">${row.gender || 'মহিলা'}</span>
+                    </div>
+                </div>
+                <div style="text-align:center;color:#94a3b8;border-top:2px dashed #e3eaf2;padding-top:8px;margin-top:8px;font-size:0.5rem;letter-spacing:1px;">
                     ❤️ ধন্যবাদ জাকারিয়া ❤️
                 </div>
             `;
-            html2pdf().set({ margin: [0.5, 0.5, 0.5, 0.5], filename: `voter_slip_${row.voterNo || 'unknown'}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, letterRendering: true, useCORS: true, logging: false }, jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } }).from(wrapper).save();
+            html2pdf().set({ 
+                margin: [0.4, 0.4, 0.4, 0.4], 
+                filename: `voter_slip_${row.voterNo || 'unknown'}.pdf`, 
+                image: { type: 'jpeg', quality: 0.98 }, 
+                html2canvas: { scale: 2, letterRendering: true, useCORS: true, logging: false }, 
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' } 
+            }).from(wrapper).save();
         });
 
-        // ===== PRINT BUTTON =====
         document.getElementById('printBtn').addEventListener('click', () => window.print());
 
-        // ===== PDF DOWNLOAD =====
-        document.getElementById('downloadPdfBtn').addEventListener('click', function() {
+        // PDF download for full list - attached to bottom button
+        downloadPdfBtn.addEventListener('click', function() {
             const wrapper = document.createElement('div');
-            wrapper.style.cssText = 'font-family: "Segoe UI", "Noto Sans Bengali", sans-serif; padding: 20px; background: white;';
+            wrapper.style.cssText = 'font-family: "Inter", "Hind Siliguri", sans-serif; padding: 16px; background: white;';
             let tableHTML = `
-                <h2 style="text-align:center;color:#0a2647;margin-bottom:16px;">🗳️ ভোটার তালিকা</h2>
-                <p style="text-align:center;color:#5a7a9a;margin-bottom:20px;">রূপগঞ্জ · ইউসুফগঞ্জ</p>
-                <table style="width:100%;border-collapse:collapse;font-size:0.7rem;">
+                <h2 style="text-align:center;color:#0a2647;margin-bottom:8px;font-size:16px;">🗳️ ভোটার তালিকা</h2>
+                <p style="text-align:center;color:#5a7a9a;margin-bottom:12px;font-size:11px;">রূপগঞ্জ · ইউসুফগঞ্জ</p>
+                <table style="width:100%;border-collapse:collapse;font-size:9px;">
                     <thead>
                         <tr style="background:#e2ebf5;">
-                            <th style="border:1px solid #c6d6e8;padding:6px;text-align:center;">সিরিয়াল</th>
-                            <th style="border:1px solid #c6d6e8;padding:6px;text-align:center;">নাম</th>
-                            <th style="border:1px solid #c6d6e8;padding:6px;text-align:center;">ভোটার নম্বর</th>
-                            <th style="border:1px solid #c6d6e8;padding:6px;text-align:center;">পিতা</th>
-                            <th style="border:1px solid #c6d6e8;padding:6px;text-align:center;">মাতা</th>
-                            <th style="border:1px solid #c6d6e8;padding:6px;text-align:center;">জন্ম তারিখ</th>
-                            <th style="border:1px solid #c6d6e8;padding:6px;text-align:center;">এলাকা</th>
+                            <th style="border:1px solid #c6d6e8;padding:4px;text-align:center;">সিরিয়াল</th>
+                            <th style="border:1px solid #c6d6e8;padding:4px;text-align:center;">নাম</th>
+                            <th style="border:1px solid #c6d6e8;padding:4px;text-align:center;">ভোটার নম্বর</th>
+                            <th style="border:1px solid #c6d6e8;padding:4px;text-align:center;">পিতা</th>
+                            <th style="border:1px solid #c6d6e8;padding:4px;text-align:center;">মাতা</th>
+                            <th style="border:1px solid #c6d6e8;padding:4px;text-align:center;">জন্ম তারিখ</th>
+                            <th style="border:1px solid #c6d6e8;padding:4px;text-align:center;">এলাকা</th>
                         </tr>
                     </thead>
                     <tbody>
             `;
             filteredData.forEach(row => {
                 tableHTML += `<tr>
-                    <td style="border:1px solid #e9eff5;padding:5px;text-align:center;">${row.serial || ''}</td>
-                    <td style="border:1px solid #e9eff5;padding:5px;">${row.name || ''}</td>
-                    <td style="border:1px solid #e9eff5;padding:5px;">${row.voterNo || ''}</td>
-                    <td style="border:1px solid #e9eff5;padding:5px;">${row.father || ''}</td>
-                    <td style="border:1px solid #e9eff5;padding:5px;">${row.mother || ''}</td>
-                    <td style="border:1px solid #e9eff5;padding:5px;">${row.birth || ''}</td>
-                    <td style="border:1px solid #e9eff5;padding:5px;">${row.area || ''}</td>
+                    <td style="border:1px solid #e9eff5;padding:3px;text-align:center;font-weight:600;">${row.serial || ''}</td>
+                    <td style="border:1px solid #e9eff5;padding:3px;">${row.name || ''}</td>
+                    <td style="border:1px solid #e9eff5;padding:3px;">${row.voterNo || ''}</td>
+                    <td style="border:1px solid #e9eff5;padding:3px;">${row.father || ''}</td>
+                    <td style="border:1px solid #e9eff5;padding:3px;">${row.mother || ''}</td>
+                    <td style="border:1px solid #e9eff5;padding:3px;font-family:'Inter',monospace;">${row.birth || ''}</td>
+                    <td style="border:1px solid #e9eff5;padding:3px;">${row.area || ''}</td>
                 </tr>`;
             });
-            tableHTML += `</tbody></table><p style="text-align:center;color:#94a3b8;margin-top:16px;font-size:0.6rem;">তৈরি করেছে জাকারিয়া ❤️</p>`;
+            tableHTML += `</tbody></table><p style="text-align:center;color:#94a3b8;margin-top:8px;font-size:8px;">তৈরি করেছে জাকারিয়া ❤️</p>`;
             wrapper.innerHTML = tableHTML;
-            html2pdf().set({ margin: [0.5, 0.5, 0.5, 0.5], filename: 'voter_list.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, letterRendering: true, useCORS: true, logging: false }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).from(wrapper).save();
+            html2pdf().set({ 
+                margin: [0.3, 0.3, 0.3, 0.3], 
+                filename: 'voter_list.pdf', 
+                image: { type: 'jpeg', quality: 0.98 }, 
+                html2canvas: { scale: 2, letterRendering: true, useCORS: true, logging: false }, 
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } 
+            }).from(wrapper).save();
         });
 
         // ===== SEARCH EVENTS =====
@@ -4480,21 +4657,18 @@
         genderFilter.addEventListener('change', filterData);
         searchInput.addEventListener('keyup', e => { if (e.key === 'Enter') filterData(); });
 
-        // ===== PAGINATION EVENTS =====
-        prevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderPage(); } });
-        nextBtn.addEventListener('click', () => {
-            const totalPages = Math.ceil(filteredData.length / pageSize);
-            if (currentPage < totalPages) { currentPage++; renderPage(); }
-        });
+        // ===== PAGINATION =====
         bottomPrev.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderPage(); } });
         bottomNext.addEventListener('click', () => {
             const totalPages = Math.ceil(filteredData.length / pageSize);
             if (currentPage < totalPages) { currentPage++; renderPage(); }
         });
-        pageSizeSelect.addEventListener('change', () => {
-            pageSize = parseInt(pageSizeSelect.value, 10);
-            currentPage = 1;
-            renderPage();
+
+        // ===== DARK MODE TOGGLE =====
+        darkToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            this.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         });
 
         // ===== INIT =====
